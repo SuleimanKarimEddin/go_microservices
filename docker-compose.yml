@@ -25,28 +25,3 @@ services:
     depends_on:
       - order_db
     restart: always
-
-
-  # productorder:
-  #   image: productorder
-  #   build:
-  #     context: ./product_order
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - 4000:4000
-
-  # order:
-  #   image: order
-  #   build:
-  #     context: ./order
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - 4002:4002
-
-  # product:
-  #   image: product
-  #   build:
-  #     context: ./product
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - 4001:4001
