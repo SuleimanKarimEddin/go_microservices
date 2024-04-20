@@ -1,0 +1,12 @@
+sudo - u postgres psql postgres = # CREATE DATABASE greenlight;
+CREATE DATABASE postgres = # \c greenlight
+greenlight = # CREATE ROLE greenlight WITH LOGIN PASSWORD 'pa55word';
+CREATE ROLE greenlight = # CREATE EXTENSION IF NOT EXISTS citext;
+psql --host=localhost --dbname=greenlight --username=greenlight
+
+
+
+
+GRANT CONNECT ON DATABASE my_database TO my_db_owner;
+GRANT USAGE ON SCHEMA public TO my_db_owner;
+GRANT ALL ON ALL TABLES IN SCHEMA public TO my_db_owner;
