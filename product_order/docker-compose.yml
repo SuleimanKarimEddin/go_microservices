@@ -1,25 +1,13 @@
 version: "3.9"
-
 services:
-  product_order_db:
-    image: postgres:14.3
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-
-    restart: always
-
   app:
-    depends_on:
-      - product_order_db
     environment:
       port: ${port}
       order_url: ${order_url}
       product_url: ${product_url}
-      
+
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 4002:4002
+      - ${port}:4002

@@ -59,11 +59,6 @@ vendor:
 
 .PHONY: test
 test:
-	@echo 'Running down migrations for test database...'
-	migrate -path ./migrations -database ${test_dns} down
-
-	@echo 'Running up migrations for test database...'
-	migrate -path ./migrations -database ${test_dns} up
 
 	@echo 'Running tests...'
 	go test -race -vet=off ./...
