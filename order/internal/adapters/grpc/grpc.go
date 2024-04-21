@@ -44,6 +44,9 @@ func (a *GrpcAdapter) GetOrder(ctx context.Context, request *proto_gen.GetOrderR
 		log.Println("err", err)
 		return nil, status.Error(codes.Internal, err.Error())
 	}
+	if order == nil {
+		return nil, status.Error(codes.NotFound, "order not found")
+	}
 	orderItemGrpc := []*proto_gen.OrderItem{}
 	for _, v := range order.OrderItems {
 		orderItemGrpc = append(orderItemGrpc, &proto_gen.OrderItem{

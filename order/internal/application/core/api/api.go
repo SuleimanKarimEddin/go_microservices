@@ -64,6 +64,8 @@ func (app *Application) GetOrder(ctx context.Context, orderID int32) (*domain.Or
 	if err != nil {
 		return nil, err
 	}
-
+	if len(order) == 0 {
+		return nil, nil
+	}
 	return &domain.TransformGetOrderToOrder(&order)[0], nil
 }
