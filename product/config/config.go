@@ -11,7 +11,6 @@ import (
 type Configration struct {
 	DbUrl  string
 	Port   int
-	Dbname string
 }
 
 func New() *Configration {
@@ -35,6 +34,5 @@ func New() *Configration {
 	return &Configration{
 		DbUrl:  connStr,
 		Port:   portInt,
-		Dbname: dbname,
 	}
 }

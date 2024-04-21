@@ -15,7 +15,7 @@ import (
 
 func main() {
 	config := config.New()
-	db := Database(config.DbUrl, config.Dbname)
+	db := Database(config.DbUrl)
 
 	dbAdatpter := generated.New(db)
 	apiAdapter := api.New(dbAdatpter)
@@ -27,7 +27,7 @@ func main() {
 	}
 }
 
-func Database(url string, dbname string) *pgxpool.Pool {
+func Database(url string) *pgxpool.Pool {
 	db, err := pgxpool.New(context.Background(), url)
 	if err != nil {
 		panic(err)
