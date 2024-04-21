@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
 	"product/config"
 	"product/internal/adapters/db/generated"
 	"product/internal/adapters/grpc"
@@ -14,7 +15,20 @@ import (
 
 func main() {
 	config := config.New()
-	db, err := pgxpool.New(context.Background(), config.DbUrl)
+	db := Database(config.DbUrl, config.Dbname)
+
+	dbAdatpter := generated.New(db)
+	apiAdapter := api.New(dbAdatpter)
+	grpcServer := grpc.New(config.Port, apiAdapter)
+	fmt.Println("server is running on port: ", config.Port)
+	err := grpcServer.Run()
+	if err != nil {
+		panic(err)
+	}
+}
+
+func Database(url string, dbname string) *pgxpool.Pool {
+	db, err := pgxpool.New(context.Background(), url)
 	if err != nil {
 		panic(err)
 	}
@@ -26,14 +40,9 @@ func main() {
 		time.Sleep(1 * time.Second)
 	}
 	if err != nil {
+		log.Fatal(err)
 		panic(err)
 	}
-	dbAdatpter := generated.New(db)
-	apiAdapter := api.New(dbAdatpter)
-	grpcServer := grpc.New(config.Port, apiAdapter)
-	fmt.Println("server is running on port: ", config.Port)
-	err = grpcServer.Run()
-	if err != nil {
-		panic(err)
-	}
+
+	return db
 }

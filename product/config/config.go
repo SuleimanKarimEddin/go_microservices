@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"os"
 	"strconv"
 
@@ -8,23 +9,32 @@ import (
 )
 
 type Configration struct {
-	DbUrl string
-	Port  int
-	Env   string
+	DbUrl  string
+	Port   int
+	Dbname string
 }
 
 func New() *Configration {
-	godotenv.Load("../")
+	godotenv.Load("../.env")
 	port := os.Getenv("port")
 	portInt, err := strconv.Atoi(port)
 	if err != nil {
 		panic(err)
 	}
-	DbUrl := os.Getenv("test_dns")
-	env := os.Getenv("env")
+	host := os.Getenv("DB_HOST")
+	dbport := os.Getenv("DB_PORT")
+	user := os.Getenv("POSTGRES_USER")
+	password := os.Getenv("POSTGRES_PASSWORD")
+	dbname := os.Getenv("POSTGRES_DB")
+	println(host, dbport, user, password, dbname)
+	if dbname == "" || user == "" || password == "" || host == "" || dbport == "" {
+		panic("DB_HOST, DB_PORT, POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB env not set")
+	}
+	connStr := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", host, dbport, user, password, dbname)
+
 	return &Configration{
-		DbUrl: DbUrl,
-		Port:  portInt,
-		Env:   env,
+		DbUrl:  connStr,
+		Port:   portInt,
+		Dbname: dbname,
 	}
 }
