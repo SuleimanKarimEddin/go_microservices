@@ -17,6 +17,8 @@ services:
       interval: 10s
       timeout: 3s
       retries: 3
+    networks:
+      - store
 
   migration:
     image: migrate/migrate
@@ -33,8 +35,10 @@ services:
     depends_on:
       product_db:
         condition: service_healthy
+    networks:
+      - store
 
-  app:
+  product_application:
     depends_on:
       - product_db
     environment:
@@ -50,3 +54,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - ${port}:${port}
+
+    networks:
+      - store
+
+networks:
+  store:
+    external: true

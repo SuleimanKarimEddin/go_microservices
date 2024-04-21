@@ -8,26 +8,23 @@ import (
 )
 
 type Configration struct {
-	Port  int
-	Env   string
-	OrderUrl string
+	Port       int
+	OrderUrl   string
 	ProductUrl string
 }
 
 func New() *Configration {
 	godotenv.Load("../")
-	port := os.Getenv("port")
+	port := os.Getenv("PORT")
 	portInt, err := strconv.Atoi(port)
 	if err != nil {
 		panic(err)
 	}
-	env := os.Getenv("env")
-	OrderUrl := os.Getenv("order_url")
-	ProductUrl := os.Getenv("product_url")
+	OrderUrl := os.Getenv("ORDER_URL")
+	ProductUrl := os.Getenv("PRODUCT_URL")
 	return &Configration{
-		Port:  portInt,
-		Env:   env,
-		OrderUrl: OrderUrl,
+		Port:       portInt,
+		OrderUrl:   OrderUrl,
 		ProductUrl: ProductUrl,
 	}
 }
