@@ -39,11 +39,26 @@ The API Gateway acts as an entry point for clients. It exposes a RESTful API tha
 
 ## Running the Application
 
-To run this application, you need to have `Makefile` and `Docker` installed on your laptop. Follow these steps:
+To run this application, you need to have `Makefile` and `Docker` installed on your laptop. Follow these steps to get started:
 
-1. Open a terminal and navigate to the project directory.
-2. Run the command `make compose` to start the application.
-This will spin up the necessary containers and start the services.
+### Step 1: Navigate to the Project Directory
+
+Open a terminal and navigate to the project directory.
+
+### Step 2: Run the Application
+
+Run the command `make compose` to start the application. This will spin up the necessary containers and start the services.
+That's it! You should now have the application up and running.
+
+### Accessing the Application
+
+Once the application is running, you can access it at:
+
+* `http://localhost:4002/order/{order_id}`
+You can create orders and products by using the gRPC connections:
+* Order Service: `grpc://localhost:4000`
+* Product Service: `grpc://localhost:4001`
+Refer to the `order.proto` and `product.proto` files for more information on how to interact with the services.
 
 ## Testing
 
