@@ -1,6 +1,6 @@
 
 include .env
-
+VERBOSE := 1
 ## help: print this help message
 .PHONY: help
 help:
@@ -65,9 +65,9 @@ test:
 	
 	 while ! pg_isready -h 0.0.0.0 -p 5501 -U postgres; do sleep 1; done
 
-	 docker exec -it order-db psql -U postgres -c "CREATE USER tester WITH PASSWORD '1' SUPERUSER;"
+	 docker exec order-db psql -U postgres -c "CREATE USER tester WITH PASSWORD '1' SUPERUSER;"
    
-	docker exec order-db psql -U postgres -c 'CREATE DATABASE test;'
+	 docker exec order-db psql -U postgres -c 'CREATE DATABASE test;'
 
 
 	@echo 'Running down migrations for test database...'
