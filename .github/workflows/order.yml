@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: create docker network
+        run: docker network create store
       - name: run docker compose
         run: docker-compose -f order/docker-compose.yml up -d
 
