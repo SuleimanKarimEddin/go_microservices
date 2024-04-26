@@ -34,7 +34,7 @@ migration:
 
 ## up: apply all up database migrations
 .PHONY: up
-up:confirm
+up:
 	@echo 'Running up migrations...'
 	migrate -path ./migrations -database ${test_dns} up
 

@@ -33,7 +33,7 @@ migration:
 	migrate create -seq -ext=.sql -dir=./migrations ${name}
 ## up: apply all up database migrations
 .PHONY: up
-up:confirm
+up:
 	@echo 'Running up migrations...'
 	migrate -path ./migrations -database ${dns} up
 
