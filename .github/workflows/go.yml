@@ -28,7 +28,7 @@ jobs:
       - name: make install-migration
         run: make install-migration
       - name: run test
-        run: make test
+        run: yes| make test
         working-directory: ./order
 
     # - name: Set up Go
