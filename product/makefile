@@ -91,7 +91,7 @@ test:
 	migrate -path ./migrations -database "${test_dns}" up
 
 	@echo 'Running tests...'
-	- go test -race -cover -v -vet=off ./...
+	go test -race -cover -v -vet=off ./...
 	docker stop product-db
 	docker remove product-db
 

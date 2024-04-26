@@ -52,7 +52,7 @@ func (s *GrpcTestSuite) SetupSuite() {
 	}
 
 	conn, err := grpc.DialContext(context.Background(), "", grpc.WithContextDialer(bufDialer), grpc.WithInsecure())
-	s.T().Cleanup(func() { _=conn.Close() })
+	s.T().Cleanup(func() { _ = conn.Close() })
 	if err != nil {
 		s.Fail(err.Error())
 	}
@@ -73,8 +73,9 @@ func (s *GrpcTestSuite) TestGetOrder() {
 
 	order, err := s.client.GetOrder(context.Background(), &proto_gen.GetOrderRequest{OrderId: 1})
 	s.NoError(err)
-	 s.Equal(order.Order.Id, int32(1))
+	s.Equal(order.Order.Id, int32(1))
 }
+
 // 	CreateOrder(ctx context.Context,order domain.Order) error
 
 func (s *GrpcTestSuite) TestCreateOrder() {
@@ -82,19 +83,18 @@ func (s *GrpcTestSuite) TestCreateOrder() {
 	apiMock := mocks.NewAPIPort(s.T())
 	apiMock.On("CreateOrder", mock.Anything, mock.Anything).Return(nil)
 	s.adatapter.apiPort = apiMock
-	_,err:= s.client.CreateOrder(context.Background(), &proto_gen.CreateOrderRequest{Order: &proto_gen.Order{Id: 1, TotalPrice: 1, UserId: 1},OrderItems: []*proto_gen.OrderItem{}})
-	s.Error(err)
+	_, err := s.client.CreateOrder(context.Background(), &proto_gen.CreateOrderRequest{Order: &proto_gen.Order{Id: 1, TotalPrice: 1, UserId: 1}, OrderItems: []*proto_gen.OrderItem{}})
+	s.NoError(err)
 }
 
+// GetOrders(ctx context.Context,limit int32, offset int32) ([]domain.Order, error)
 
-	// GetOrders(ctx context.Context,limit int32, offset int32) ([]domain.Order, error)
+func (s *GrpcTestSuite) TestGetOrders() {
 
-	func (s *GrpcTestSuite) TestGetOrders() {
-
-		apiMock := mocks.NewAPIPort(s.T())
-		apiMock.On("GetOrders", mock.Anything, int32(1), int32(1)).Return([]domain.Order{{ID: 1, TotalPrice: 1, UserID: 1, OrderItems: nil}}, nil)
-		s.adatapter.apiPort = apiMock
-		orders, err := s.client.GetOrders(context.Background(), &proto_gen.GetOrdersRequest{Limit: 1, Offset: 1})
-		s.NoError(err)
-		s.Equal(orders.Orders[0].Id, int32(1))
-	}
+	apiMock := mocks.NewAPIPort(s.T())
+	apiMock.On("GetOrders", mock.Anything, int32(1), int32(1)).Return([]domain.Order{{ID: 1, TotalPrice: 1, UserID: 1, OrderItems: nil}}, nil)
+	s.adatapter.apiPort = apiMock
+	orders, err := s.client.GetOrders(context.Background(), &proto_gen.GetOrdersRequest{Limit: 1, Offset: 1})
+	s.NoError(err)
+	s.Equal(orders.Orders[0].Id, int32(1))
+}
