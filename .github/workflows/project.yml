@@ -5,8 +5,6 @@ name: Project
 on:
   push:
     branches: ["main"]
-    paths: ["/"]
-
 
 jobs:
   build:
@@ -37,4 +35,3 @@ jobs:
       - name: run test product_order service
         run: yes| make test
         working-directory: ./product_order
-
