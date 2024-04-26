@@ -20,17 +20,14 @@ jobs:
   test_order_service:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: set up golang
-      uses: actions/setup-go@v4
-      with:
-        go-version: 1.20
-    - name: change working directory
-      run: cd order
-    - name: print current directory
-      run: pwd
-    - name: run test
-      run: make test
+      - uses: actions/checkout@v4
+      - name: set up golang
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.20
+      - name: run test
+        run: make test
+        working-directory: ./order
 
     # - name: Set up Go
     #   uses: actions/setup-go@v4
