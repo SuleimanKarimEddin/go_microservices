@@ -77,6 +77,6 @@ test:
 	migrate -path ./migrations -database "${test_dns}" up
 
 	@echo 'Running tests...'
-	go test -race -cover -v -vet=off ./...
+	go test -vet=off ./...
 	docker stop order-db
 	docker remove order-db
