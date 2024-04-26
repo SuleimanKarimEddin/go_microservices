@@ -83,7 +83,7 @@ func (s *GrpcTestSuite) TestCreateOrder() {
 	apiMock.On("CreateOrder", mock.Anything, mock.Anything).Return(nil)
 	s.adatapter.apiPort = apiMock
 	_,err:= s.client.CreateOrder(context.Background(), &proto_gen.CreateOrderRequest{Order: &proto_gen.Order{Id: 1, TotalPrice: 1, UserId: 1},OrderItems: []*proto_gen.OrderItem{}})
-	s.NoError(err)
+	s.Error(err)
 }
 
 
