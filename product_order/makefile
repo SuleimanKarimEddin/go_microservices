@@ -60,6 +60,8 @@ vendor:
 .PHONY: test
 test:
 	echo "Running tests..."
-	echo ls -l
+	echo {ls -l}
+	ls -l
+	go test ./...
 	@echo 'Running tests...'
 	go test -race -vet=off ./...
