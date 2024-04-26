@@ -27,5 +27,5 @@ jobs:
       - name: make install-migration
         run: make install-migration
       - name: run test
-        run: yes| make test
+        run: make test
         working-directory: ./product_order
