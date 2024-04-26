@@ -16,7 +16,7 @@ jobs:
       - name: create docker network
         run: docker network create store
       - name: run make file
-        run: make compose
+        run: make run
 
     # - name: Set up Go
     #   uses: actions/setup-go@v4
