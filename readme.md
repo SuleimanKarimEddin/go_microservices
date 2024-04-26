@@ -47,7 +47,7 @@ Open a terminal and navigate to the project directory.
 
 ### Step 2: Run the Application
 
-Run in the terminal `docker network create store` then 
+Run in the terminal `docker network create store` then
 Run the command `make compose` to start the application. This will spin up the necessary containers and start the services.
 That's it! You should now have the application up and running.
 
