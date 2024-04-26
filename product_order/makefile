@@ -1,4 +1,4 @@
-
+VERBOSE := 1
 include .env
 
 ## help: print this help message
