@@ -27,7 +27,7 @@ jobs:
       - name: make install-migration
         run: make install-migration
       - name: install go dependencies
-        run: go mod download
+        run: go mod tidy
       - name: run test
         run: yes| make test
         working-directory: ./order
