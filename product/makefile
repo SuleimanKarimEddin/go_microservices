@@ -79,7 +79,7 @@ test:
 	
 	 while ! pg_isready -h 0.0.0.0 -p 5500 -U postgres; do sleep 1; done
 
-	 docker exec -it product-db psql -U postgres -c "CREATE USER tester WITH PASSWORD '1' SUPERUSER;"
+	 docker exec product-db psql -U postgres -c "CREATE USER tester WITH PASSWORD '1' SUPERUSER;"
    
 	docker exec product-db psql -U postgres -c 'CREATE DATABASE test;'
 
