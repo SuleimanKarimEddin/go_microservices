@@ -24,7 +24,9 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: 1.20
-
+      - name: ls -1
+        run: ls -1
+        working-directory: ./product_order
       - name: run test
-        run: make run
+        run: make test
         working-directory: ./product_order
