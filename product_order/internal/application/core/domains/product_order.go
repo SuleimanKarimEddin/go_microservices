@@ -21,9 +21,9 @@ type Order struct {
 }
 
 type OrderItem struct {
-	ID        int32   `json:"id"`
-	OrderID   int32   `json:"order_id"`
-	Product   *Product `json:"product"`
-	Amount    int32   `json:"amount"`
-	Price     float64 `json:"price"`
+	ID      int32    `json:"id"`
+	OrderID int32    `json:"order_id"`
+	Product *Product `json:"product"`
+	Amount  int32    `json:"amount"`
+	Price   float64  `json:"price"`
 }

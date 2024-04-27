@@ -42,7 +42,7 @@ func TestCreateProduct(t *testing.T) {
 	}, nil)
 	apiAdapter := New(mockesDb)
 	product, err := apiAdapter.CreateProduct(context.Background(), domain.Product{
-		Name: "test",
+		Name:  "test",
 		Price: 10,
 		Image: "test",
 	})
@@ -53,7 +53,7 @@ func TestCreateProduct(t *testing.T) {
 	assert.Equal(t, "test", product.Image)
 
 }
-func TestGetProduct(t *testing.T){
+func TestGetProduct(t *testing.T) {
 
 	mockesDb := mocks.NewDBPort(t)
 	mockesDb.On("GetProductById", context.Background(), int32(1)).Return(generated.Product{

@@ -13,6 +13,7 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/test/bufconn"
 )
 
@@ -50,7 +51,7 @@ func (gs *GrpcSuite) SetupSuite() {
 	bufDialer := func(context.Context, string) (net.Conn, error) {
 		return lis.Dial()
 	}
-	conn, err := grpc.DialContext(context.Background(), "", grpc.WithContextDialer(bufDialer), grpc.WithInsecure())
+	conn, err := grpc.DialContext(context.Background(), "", grpc.WithContextDialer(bufDialer), grpc.WithTransportCredentials(insecure.NewCredentials()))
 	gs.T().Cleanup(func() {
 
 		_ = conn.Close()

@@ -9,8 +9,8 @@ import (
 )
 
 type Configration struct {
-	DbUrl  string
-	Port   int
+	DbUrl string
+	Port  int
 }
 
 func New() *Configration {
@@ -32,7 +32,7 @@ func New() *Configration {
 	connStr := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", host, dbport, user, password, dbname)
 
 	return &Configration{
-		DbUrl:  connStr,
-		Port:   portInt,
+		DbUrl: connStr,
+		Port:  portInt,
 	}
 }

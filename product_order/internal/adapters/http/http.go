@@ -6,7 +6,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-
 func (a *httpAdapter) GetOrder(c *fiber.Ctx) error {
 	id := c.Params("id")
 	intId, err := strconv.ParseInt(id, 10, 32)

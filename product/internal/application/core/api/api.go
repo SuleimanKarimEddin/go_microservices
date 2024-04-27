@@ -77,4 +77,3 @@ func (app *Application) ListProducts(ctx context.Context, limit int32, offset in
 	}
 	return products, nil
 }
-
