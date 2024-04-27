@@ -77,8 +77,30 @@ To run the tests, follow these steps:
 2. Run the command `make test`.
 This will spin up a Postgres container specifically for testing purposes, allowing you to execute the tests in a controlled environment.
 
-## Github Action 
+## GitHub Action Setup
 
-we saparete the action to two main ccomponent 
-### 1 github Action for each microservices
-to seccessufly push the code to the repostry your cade should pass some 
+This repository's workflow employs two main components:
+
+### 1. GitHub Action for Each Microservice
+
+Each microservice has its dedicated GitHub Action workflow. This workflow ensures that the code pushed to the repository meets several quality checks before integration.
+
+#### Quality Checks
+
+* **Dependency Verification:** The action verifies the dependencies listed in `go.sum` and ensures that the required dependencies are correctly vendored.
+* **Code Formatting:** It ensures code consistency and readability by running a code vetting process.
+* **Static Code Analysis:** Utilizes staticcheck to perform static code analysis, enhancing code quality and identifying potential issues early in the development cycle.
+
+These checks collectively ensure that each microservice maintains high standards of code quality and reliability.
+
+### 2. GitHub Action for the Main Project
+
+The main project's GitHub Action workflow orchestrates the integration of all microservices and ensures the smooth functioning of the entire application.
+
+#### Integration Process
+
+* **Docker Compose Execution:** The workflow orchestrates the execution of the application via Docker Compose, ensuring that all microservices interact seamlessly within the defined environment.
+* **Testing:** It executes both unit tests and end-to-end tests to validate the functionality and integrity of the codebase.
+* **Inter-Microservice Communication:** Verifies that each microservice communicates effectively with others, maintaining the expected behavior of the entire system.
+
+By employing these actions, the repository ensures that any code pushed to it undergoes rigorous testing and integration processes before being integrated into the main project.
