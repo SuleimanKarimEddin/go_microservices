@@ -30,7 +30,7 @@ func (s *GrpcAdapter) Run() error {
 	}
 	grpcServer := GrpcServer.NewServer()
 	proto_gen.RegisterOrderServiceServer(grpcServer, s)
-	err=grpcServer.Serve(lis)
+	err = grpcServer.Serve(lis)
 	if err != nil {
 		return err
 	}

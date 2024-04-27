@@ -76,3 +76,9 @@ To run the tests, follow these steps:
 1. Open any microservice directory.
 2. Run the command `make test`.
 This will spin up a Postgres container specifically for testing purposes, allowing you to execute the tests in a controlled environment.
+
+## Github Action 
+
+we saparete the action to two main ccomponent 
+### 1 github Action for each microservices
+to seccessufly push the code to the repostry your cade should pass some 
