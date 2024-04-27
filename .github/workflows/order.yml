@@ -30,14 +30,13 @@ jobs:
         run: go mod download
         working-directory: ./order
 
-      - uses: dominikh/staticcheck-action@v1
-        with:
-          version: "latest"
-          install-go: false
+      - name: install staticcheck
+        run: go install honnef.co/go/tools/cmd/staticcheck@2022.1
         
       - name: aduit and lint and vender and  Vetting
         run: make aduit
         working-directory: ./order
+
       - name: run test
         run: yes| make test
         working-directory: ./order
