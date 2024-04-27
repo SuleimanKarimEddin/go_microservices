@@ -34,7 +34,7 @@ jobs:
         run: go install honnef.co/go/tools/cmd/staticcheck@2022.1
         
       - name: aduit and lint and vender and  Vetting
-        run: make aduit
+        run: make audit
         working-directory: ./order
 
       - name: run test
